@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Your shopping cart at Happy Beasts. Review your selected pet food items, update quantities, and proceed to checkout.">
+    <meta name="keywords" content="shopping cart, pet food cart, checkout, Happy Beasts cart, pet supplies cart">
+    <meta name="author" content="Happy Beasts">
+    <title>Shopping Cart | Happy Beasts</title>
+
+    <!--favicon-->
+    <link rel="icon" href="images/Happy beasts Logo.png" type="image/png">
+    
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=Fredoka+One&display=swap" rel="stylesheet">
+    
+    <!-- Shared External CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* Cart Page Specific Styles */
+        
+        /* Empty Cart State */
+        .empty-cart-container {
+            text-align: center;
+            padding: 80px 20px;
+            background: var(--white);
+            border-radius: 32px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .empty-cart-icon {
+            width: 120px;
+            height: 120px;
+            background: var(--cream-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 3rem;
+            color: var(--primary-orange);
+        }
+        
+        /* Cart Items */
+        .cart-item {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+        
+        .cart-item:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        
+        .cart-item-img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 10px;
+        }
+        
+        .cart-item-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+        
+        .cart-item-brand {
+            font-size: 0.7rem;
+            color: var(--secondary-green);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .cart-item-weight {
+            font-size: 0.75rem;
+            color: var(--text-soft);
+            margin-top: 5px;
+        }
+        
+        .cart-item-price {
+            font-weight: 700;
+            color: var(--primary-orange);
+            font-size: 1.1rem;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--cream);
+            border-radius: 50px;
+            padding: 5px 10px;
+            width: fit-content;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background: var(--white);
+            color: var(--primary-orange);
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .quantity-btn:hover {
+            background: var(--primary-orange);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+        
+        .quantity-value {
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .item-subtotal {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+        
+        .remove-item {
+            color: #e74c3c;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+        }
+        
+        .remove-item:hover {
+            color: #c0392b;
+            transform: scale(1.1);
+        }
+        
+        /* Order Summary Card */
+        .summary-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 25px;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 100px;
+        }
+        
+        .summary-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-orange);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--cream-dark);
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            color: var(--text-soft);
+        }
+        
+        .summary-row.total {
+            border-top: 2px solid var(--cream-dark);
+            margin-top: 10px;
+            padding-top: 15px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+        }
+        
+        .summary-row.total span:last-child {
+            color: var(--primary-orange);
+        }
+        
+        .promo-section {
+            margin: 20px 0;
+            padding: 15px 0;
+            border-top: 1px solid var(--cream-dark);
+            border-bottom: 1px solid var(--cream-dark);
+        }
+        
+        .promo-input-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .promo-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--cream-dark);
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .promo-input:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+        }
+        
+        .btn-promo {
+            background: var(--cream-dark);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition-fast);
+        }
+        
+        .btn-promo:hover {
+            background: var(--primary-orange);
+            color: var(--white);
+        }
+        
+        .btn-checkout {
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-dark));
+            color: var(--white);
+            border: none;
+            padding: 14px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            width: 100%;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+        
+        .btn-checkout:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .payment-methods {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+            font-size: 1.5rem;
+            color: var(--gray);
+        }
+        
+        /* Recommended Products */
+        .recommended-section {
+            padding: 60px 0;
+            background: var(--cream);
+        }
+        
+        .recommended-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .rec-product-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 15px;
+            text-align: center;
+            transition: var(--transition);
+            height: 100%;
+        }
+        
+        .rec-product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .rec-product-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        
+        .rec-product-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .rec-product-price {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary-orange);
+            margin-bottom: 8px;
+        }
+        
+        .btn-add {
+            background: var(--secondary-green);
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .btn-add:hover {
+            background: var(--secondary-light);
+            transform: translateY(-2px);
+        }
+        
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            color: var(--text-soft);
+        }
+        
+        .trust-badge i {
+            color: var(--secondary-green);
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 992px) {
+            .summary-card {
+                position: static;
+                margin-top: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .cart-item {
+                text-align: center;
+            }
+            .cart-item-img {
+                margin-bottom: 15px;
+            }
+            .quantity-selector {
+                margin: 10px auto;
+            }
+            .trust-badges {
+                gap: 15px;
+            }
+        }
+        
+        /* Animation for item removal */
+        .cart-item-removing {
+            animation: fadeOut 0.3s ease forwards;
+        }
+        
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/Happy beasts Logo.png" alt="Happy Beasts" class="logo-img" style="height: 65px; width: auto;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="brands.html">Brands</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="btn-nav-shop active" href="cart.html">Cart</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1><i class="fas fa-shopping-cart me-2"></i> Your Cart</h1>
+            <p>Review your items before checking out</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Cart</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section class="cart-section">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Cart Items Column -->
+                <div class="col-lg-8">
+                    <div id="cartItemsContainer">
+                        <!-- Cart items will be dynamically loaded here -->
+                    </div>
+                </div>
+                
+                <!-- Order Summary Column -->
+                <div class="col-lg-4">
+                    <div class="summary-card">
+                        <div class="summary-title">Order Summary</div>
+                        
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">₱0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span id="shipping">Calculating...</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Tax (10%)</span>
+                            <span id="tax">₱0</span>
+                        </div>
+                        
+                        <div class="promo-section">
+                            <div class="promo-input-group">
+                                <input type="text" class="promo-input" id="promoCode" placeholder="Enter promo code">
+                                <button class="btn-promo" id="applyPromo">Apply</button>
+                            </div>
+                            <div id="promoMessage" class="small mt-2" style="display: none;"></div>
+                        </div>
+                        
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span id="total">₱0</span>
+                        </div>
+                        
+                        <button class="btn-checkout" id="checkoutBtn">
+                            <i class="fas fa-lock me-2"></i> Proceed to Checkout
+                        </button>
+                        
+                        <div class="payment-methods">
+                            <div class="trust-badges">
+                                <div class="trust-badge"><i class="fas fa-shield-alt"></i> Secure Checkout</div>
+                                <div class="trust-badge"><i class="fas fa-truck"></i> Free Shipping > ₱2,000</div>
+                            </div>
+                            <div class="payment-icons">
+                                <i class="fab fa-cc-visa"></i>
+                                <i class="fab fa-cc-mastercard"></i>
+                                <i class="fab fa-cc-paypal"></i>
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended Products Section -->
+    <section class="recommended-section" id="recommendedSection" style="display: none;">
+        <div class="container">
+            <h2 class="recommended-title">🐾 You Might Also Like</h2>
+            <div class="row g-4" id="recommendedProducts">
+                <!-- Recommended products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h3>Happy Beasts 🐾</h3>
+                    <p class="small">Premium pet food for happy dogs and cats.</p>
+                    <p class="small">Healthy ingredients, balanced nutrition, and flavors your pets will love.</p>
+                </div>
+                <div class="col-md-2">
+                    <h4>Quick Links</h4>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="products.html">Products</a></p>
+                    <p><a href="brands.html">Brands</a></p>
+                    <p><a href="about.html">About Us</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+                </div>
+                <div class="col-md-3">
+                    <h4>Shop by Pet</h4>
+                    <p><a href="products.html?cat=dog">Dog Food</a></p>
+                    <p><a href="products.html?cat=cat">Cat Food</a></p>
+                    <p><a href="products.html">Best Sellers</a></p>
+                    <p><a href="products.html">New Arrivals</a></p>
+                </div>
+                <div class="col-md-3">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="mt-3">
+                        <p><i class="fas fa-map-marker-alt"></i> Gaborone, Botswana</p>
+                        <p><i class="fas fa-envelope"></i> hello@happybeasts.co.bw</p>
+                        <p><i class="fas fa-phone"></i> +267 71 234 567</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="mb-0 small">&copy; 2026 Happy Beasts. All rights reserved. | Healthy food for happy pets 🐾</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Cart Button -->
+    <a href="cart.html" class="float-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark" id="cartCount" style="font-size: 0.6rem;">0</span>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 50 });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+        
+        // Active page highlighting
+        const currentPage = window.location.pathname.split('/').pop() || 'cart.html';
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === currentPage) link.classList.add('active');
+        });
+        
+        // Product Database
+        const productDatabase = {
+            1: { name: "Adult Dog Food", brand: "ROYAL CANIN", price: 1250, weight: "3kg", image: "img/dog food.avif", category: "dog" },
+            2: { name: "Wilderness High Protein", brand: "BLUE BUFFALO", price: 1850, weight: "4.5kg", image: "images/1.avif", category: "dog" },
+            3: { name: "Science Diet", brand: "HILL'S", price: 1580, weight: "3.5kg", image: "images/Adult Dog Food.avif", category: "dog" },
+            9: { name: "Adult Cat Food", brand: "ROYAL CANIN", price: 1150, weight: "2kg", image: "images/9.avif", category: "cat" },
+            10: { name: "Grain-Free Pate", brand: "WELLNESS", price: 120, weight: "85g", image: "images/dog food2.avif", category: "cat" },
+            11: { name: "Pro Plan LiveClear", brand: "PURINA", price: 1450, weight: "3kg", image: "img/cf2.avif", category: "cat" }
+        };
+        
+        // Cart items - stored in localStorage
+        let cartItems = [];
+        
+        // Load cart from localStorage
+        function loadCart() {
+            const savedCart = localStorage.getItem('happyBeastsCart');
+            if (savedCart) {
+                cartItems = JSON.parse(savedCart);
+            } else {
+                // Sample cart items for demonstration
+                cartItems = [
+                    { id: 1, name: "Adult Dog Food", brand: "ROYAL CANIN", price: 1250, quantity: 1, image: "img/dog food.avif", weight: "3kg" },
+                    { id: 9, name: "Adult Cat Food", brand: "ROYAL CANIN", price: 1150, quantity: 2, image: "img/cf.avif", weight: "2kg" }
+                ];
+            }
+            saveCart();
+        }
+        
+        // Save cart to localStorage
+        function saveCart() {
+            localStorage.setItem('happyBeastsCart', JSON.stringify(cartItems));
+            updateCartCount();
+        }
+        
+        // Update cart count badge
+        function updateCartCount() {
+            const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = totalItems;
+            localStorage.setItem('cartCount', totalItems);
+        }
+        
+        // Render cart items
+        function renderCart() {
+            const container = document.getElementById('cartItemsContainer');
+            
+            if (cartItems.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-cart-container" data-aos="fade-up">
+                        <div class="empty-cart-icon">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <h3>Your cart is empty</h3>
+                        <p class="text-soft mb-4">Looks like you haven't added any items to your cart yet.</p>
+                        <a href="products.html" class="btn-primary">Start Shopping <i class="fas fa-arrow-right ms-2"></i></a>
+                    </div>
+                `;
+                document.getElementById('recommendedSection').style.display = 'block';
+                renderRecommendedProducts();
+                updateSummary();
+                return;
+            }
+            
+            let html = '';
+            cartItems.forEach((item, index) => {
+                const subtotal = item.price * item.quantity;
+                html += `
+                    <div class="cart-item" data-id="${item.id}" data-index="${index}" data-aos="fade-up" data-aos-delay="${index * 50}">
+                        <div class="row align-items-center">
+                            <div class="col-md-3 col-12 text-center text-md-start">
+                                <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                            </div>
+                            <div class="col-md-4 col-12 text-center text-md-start">
+                                <div class="cart-item-brand">${item.brand}</div>
+                                <div class="cart-item-title">${item.name}</div>
+                                <div class="cart-item-weight"><i class="fas fa-weight-hanging"></i> ${item.weight}</div>
+                            </div>
+                            <div class="col-md-2 col-12 text-center">
+                                <div class="cart-item-price">₱${item.price}</div>
+                            </div>
+                            <div class="col-md-2 col-12 text-center">
+                                <div class="quantity-selector">
+                                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                                    <span class="quantity-value">${item.quantity}</span>
+                                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="col-md-1 col-12 text-center">
+                                <button class="remove-item" onclick="removeItem(${item.id})">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+            updateSummary();
+            
+            // Show recommended products
+            document.getElementById('recommendedSection').style.display = 'block';
+            renderRecommendedProducts();
+        }
+        
+        // Update quantity
+        window.updateQuantity = function(id, change) {
+            const itemIndex = cartItems.findIndex(i => i.id === id);
+            if (itemIndex !== -1) {
+                const newQuantity = cartItems[itemIndex].quantity + change;
+                if (newQuantity >= 1) {
+                    cartItems[itemIndex].quantity = newQuantity;
+                } else {
+                    cartItems.splice(itemIndex, 1);
+                }
+                saveCart();
+                renderCart();
+                showToast('Cart updated', 'success');
+            }
+        };
+        
+        // Remove item
+        window.removeItem = function(id) {
+            const itemElement = document.querySelector(`.cart-item[data-id="${id}"]`);
+            if (itemElement) {
+                itemElement.classList.add('cart-item-removing');
+                setTimeout(() => {
+                    const itemIndex = cartItems.findIndex(i => i.id === id);
+                    if (itemIndex !== -1) {
+                        cartItems.splice(itemIndex, 1);
+                        saveCart();
+                        renderCart();
+                        showToast('Item removed from cart', 'success');
+                    }
+                }, 300);
+            } else {
+                const itemIndex = cartItems.findIndex(i => i.id === id);
+                if (itemIndex !== -1) {
+                    cartItems.splice(itemIndex, 1);
+                    saveCart();
+                    renderCart();
+                    showToast('Item removed from cart', 'success');
+                }
+            }
+        };
+        
+        // Update summary
+        function updateSummary() {
+            const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = subtotal > 2000 ? 0 : 150;
+            const tax = subtotal * 0.1;
+            let total = subtotal + shipping + tax;
+            
+            // Apply promo discount if active
+            if (promoApplied) {
+                total = total * 0.9; // 10% discount
+                document.getElementById('subtotal').innerHTML = `₱${subtotal} <small class="text-success">(10% off applied)</small>`;
+            } else {
+                document.getElementById('subtotal').innerHTML = `₱${subtotal}`;
+            }
+            
+            document.getElementById('shipping').innerHTML = shipping === 0 ? 'Free' : `₱${shipping}`;
+            document.getElementById('tax').innerHTML = `₱${Math.round(tax)}`;
+            document.getElementById('total').innerHTML = `₱${Math.round(total)}`;
+        }
+        
+        // Promo code functionality
+        let promoApplied = false;
+        
+        document.getElementById('applyPromo').addEventListener('click', function() {
+            const promoInput = document.getElementById('promoCode');
+            const promoMessage = document.getElementById('promoMessage');
+            const code = promoInput.value.trim().toUpperCase();
+            
+            if (code === 'HAPPY10' || code === 'WELCOME10' || code === 'PAWS10') {
+                promoApplied = true;
+                promoMessage.innerHTML = '<i class="fas fa-check-circle text-success"></i> Promo code applied! 10% discount.';
+                promoMessage.style.color = '#4CAF50';
+                promoMessage.style.display = 'block';
+                updateSummary();
+            } else if (code === '') {
+                promoMessage.innerHTML = '<i class="fas fa-info-circle"></i> Please enter a promo code.';
+                promoMessage.style.color = '#FF9800';
+                promoMessage.style.display = 'block';
+            } else {
+                promoMessage.innerHTML = '<i class="fas fa-exclamation-circle text-danger"></i> Invalid promo code.';
+                promoMessage.style.color = '#e74c3c';
+                promoMessage.style.display = 'block';
+            }
+            
+            setTimeout(() => {
+                promoMessage.style.display = 'none';
+            }, 3000);
+        });
+        
+        // Render recommended products
+        function renderRecommendedProducts() {
+            const recommendedContainer = document.getElementById('recommendedProducts');
+            const cartIds = cartItems.map(item => item.id);
+            const recommended = Object.values(productDatabase).filter(p => !cartIds.includes(p.id)).slice(0, 4);
+            
+            if (recommended.length === 0) {
+                recommendedContainer.innerHTML = '<div class="col-12 text-center"><p class="text-soft">No recommendations available</p></div>';
+                return;
+            }
+            
+            let html = '';
+            recommended.forEach(product => {
+                html += `
+                    <div class="col-md-3 col-6">
+                        <div class="rec-product-card">
+                            <img src="${product.image}" alt="${product.name}" class="rec-product-img">
+                            <div class="rec-product-title">${product.name}</div>
+                            <div class="rec-product-brand small text-soft">${product.brand}</div>
+                            <div class="rec-product-price">₱${product.price}</div>
+                            <button class="btn-add" onclick="addToCart(${product.id})">
+                                <i class="fas fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            recommendedContainer.innerHTML = html;
+        }
+        
+        // Add to cart function
+        window.addToCart = function(productId) {
+            const product = productDatabase[productId];
+            if (product) {
+                const existingItem = cartItems.find(item => item.id === productId);
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    cartItems.push({
+                        id: productId,
+                        name: product.name,
+                        brand: product.brand,
+                        price: product.price,
+                        quantity: 1,
+                        image: product.image,
+                        weight: product.weight
+                    });
+                }
+                saveCart();
+                renderCart();
+                showToast(`${product.name} added to cart! 🐾`, 'success');
+            }
+        };
+        
+        // Show toast notification
+        function showToast(message, type) {
+            const existingToast = document.querySelector('.cart-toast');
+            if (existingToast) existingToast.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = `cart-toast ${type}`;
+            toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-info-circle'}"></i> ${message}`;
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 100px;
+                right: 30px;
+                background: ${type === 'success' ? '#4A7C59' : '#FF9800'};
+                color: white;
+                padding: 12px 20px;
+                border-radius: 50px;
+                z-index: 10000;
+                animation: slideInRight 0.3s ease;
+                box-shadow: var(--shadow-md);
+            `;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+        
+        // Checkout button
+        document.getElementById('checkoutBtn').addEventListener('click', function() {
+            if (cartItems.length === 0) {
+                showToast('Your cart is empty. Add some items first!', 'error');
+            } else {
+                showToast('Redirecting to checkout... 🐾', 'success');
+                setTimeout(() => {
+                    window.location.href = 'checkout.html';
+                }, 1000);
+            }
+        });
+        
+        // Initialize
+        loadCart();
+        renderCart();
+        
+        // Add notification styles if not present
+        if (!document.querySelector('#cartToastStyles')) {
+            const style = document.createElement('style');
+            style.id = 'cartToastStyles';
+            style.textContent = `
+                @keyframes slideInRight {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                .cart-toast {
+                    animation: slideInRight 0.3s ease;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+</body>
+</html>

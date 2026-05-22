@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Happy Beasts - premium pet food store in Gaborone. Reach us for questions about pet nutrition, orders, or partnerships.">
+    <meta name="keywords" content="contact Happy Beasts, pet food store Gaborone, pet nutrition help">
+    <meta name="author" content="Happy Beasts">
+    <title>Contact | Happy Beasts</title>
+
+    <!--favicon-->
+    <link rel="icon" href="images/Happy beasts Logo.png" type="image/png">
+    
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=Fredoka+One&display=swap" rel="stylesheet">
+    
+    <!-- Shared External CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* Contact Page Specific Styles - Modern Design */
+        
+        /* Hero Section Override */
+        .contact-hero {
+            background: linear-gradient(135deg, rgba(232,122,42,0.92) 0%, rgba(74,124,89,0.88) 100%),
+                        url('https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=1600');
+            background-size: cover;
+            background-position: center;
+            padding: 60px 0;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-hero::before {
+            content: '🐾';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.08;
+            bottom: -50px;
+            left: -50px;
+            pointer-events: none;
+        }
+        
+        .contact-hero::after {
+            content: '🐶';
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.08;
+            top: -30px;
+            right: -30px;
+            pointer-events: none;
+        }
+        
+        /* Contact Cards Grid */
+        .contact-cards-grid {
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .contact-card-modern {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 30px 25px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            height: 100%;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        
+        .contact-card-modern:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .contact-card-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+        
+        .contact-card-modern h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+        
+        .contact-card-modern p {
+            color: var(--text-soft);
+            margin-bottom: 5px;
+        }
+        
+        .contact-card-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--primary-orange);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+        }
+        
+        .contact-card-link:hover {
+            color: var(--secondary-green);
+            transform: translateX(5px);
+        }
+        
+        /* Split Form Section */
+        .split-contact-section {
+            padding: 80px 0;
+            background: var(--cream);
+        }
+        
+        .form-side {
+            background: var(--white);
+            border-radius: 32px;
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            height: 100%;
+        }
+        
+        .info-side {
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-dark));
+            border-radius: 32px;
+            padding: 40px;
+            color: var(--white);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .info-side::before {
+            content: '🐾';
+            position: absolute;
+            font-size: 180px;
+            opacity: 0.08;
+            bottom: -40px;
+            right: -40px;
+            pointer-events: none;
+        }
+        
+        .info-side h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .info-feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            transition: var(--transition-fast);
+        }
+        
+        .info-feature:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(5px);
+        }
+        
+        .info-feature i {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .store-hours {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .hour-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+        
+        /* Map Section */
+        .map-section {
+            padding: 0 0 80px 0;
+        }
+        
+        .map-wrapper {
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            height: 400px;
+        }
+        
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            filter: grayscale(0.2) contrast(1.1);
+        }
+        
+        /* FAQ Accordion */
+        .faq-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--cream-dark), var(--white));
+        }
+        
+        .faq-item-modern {
+            background: var(--white);
+            border-radius: 20px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-fast);
+        }
+        
+        .faq-item-modern:hover {
+            box-shadow: var(--shadow-md);
+        }
+        
+        .faq-question-modern {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-dark);
+            background: var(--white);
+        }
+        
+        .faq-question-modern i {
+            color: var(--primary-orange);
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item-modern.active .faq-question-modern i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer-modern {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-soft);
+            border-top: 0px solid var(--cream-dark);
+        }
+        
+        .faq-item-modern.active .faq-answer-modern {
+            padding: 0 25px 20px 25px;
+            max-height: 200px;
+            border-top: 1px solid var(--cream-dark);
+        }
+        
+        /* Floating Paw */
+        .floating-paw {
+            position: fixed;
+            bottom: 100px;
+            right: 100px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: var(--transition-fast);
+            pointer-events: none;
+            z-index: 998;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-cards-grid {
+                margin-top: -40px;
+            }
+            .form-side, .info-side {
+                padding: 25px;
+            }
+            .map-wrapper {
+                height: 250px;
+            }
+            .floating-paw {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/Happy beasts Logo.png" alt="Happy Beasts" class="logo-img" style="height: 65px; width: auto;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="brands.html">Brands</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="btn-nav-shop" href="shop.html">Shop Now</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Let's Talk</h1>
+            <p class="lead">We're here to help you and your furry friends</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Contact Cards Grid -->
+    <section class="contact-cards-grid">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="contact-card-modern">
+                        <div class="contact-card-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Call Us</h3>
+                        <p>Mon-Sat: 9AM - 6PM</p>
+                        <p class="fw-bold">+267 71 234 567</p>
+                        <a href="tel:+26771234567" class="contact-card-link">Call Now →</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-card-modern">
+                        <div class="contact-card-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Us</h3>
+                        <p>We respond within 24 hours</p>
+                        <p class="fw-bold">hello@happybeasts.co.bw</p>
+                        <a href="mailto:hello@happybeasts.co.bw" class="contact-card-link">Send Email →</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-card-modern">
+                        <div class="contact-card-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3>WhatsApp</h3>
+                        <p>Quickest response time</p>
+                        <p class="fw-bold">+267 71 234 567</p>
+                        <a href="https://wa.me/26771234567" class="contact-card-link">Chat on WhatsApp →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Split Contact Section (Form + Info) -->
+    <section class="split-contact-section">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Form Side -->
+                <div class="col-lg-7">
+                    <div class="form-side">
+                        <h2 style="color: var(--primary-orange);" class="mb-2">Send us a message</h2>
+                        <p class="text-soft mb-4">Fill out the form below and we'll get back to you as soon as possible.</p>
+                        
+                        <form id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Your Name <span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="name" placeholder="John Doe" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Email Address <span class="required">*</span></label>
+                                        <input type="email" class="form-control" id="email" placeholder="hello@example.com" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Phone Number</label>
+                                        <input type="tel" class="form-control" id="phone" placeholder="+267 71 234 567">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Your Pet's Name</label>
+                                        <input type="text" class="form-control" id="petName" placeholder="Buddy, Luna, Max...">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Subject <span class="required">*</span></label>
+                                        <select class="form-control" id="subject" required>
+                                            <option value="">Select a subject</option>
+                                            <option value="order">📦 Order Inquiry</option>
+                                            <option value="product">🍖 Product Question</option>
+                                            <option value="nutrition">🥗 Nutrition Advice</option>
+                                            <option value="feedback">💬 Feedback</option>
+                                            <option value="partnership">🤝 Partnership</option>
+                                            <option value="other">🐾 Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Message <span class="required">*</span></label>
+                                        <textarea class="form-control" id="message" rows="4" placeholder="Tell us how we can help you and your pet..." required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-submit">
+                                        <i class="fas fa-paper-plane me-2"></i> Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Info Side -->
+                <div class="col-lg-5">
+                    <div class="info-side">
+                        <h3>Why pet parents love us</h3>
+                        
+                        <div class="info-feature">
+                            <i class="fas fa-truck"></i>
+                            <div>
+                                <strong>Free Delivery</strong>
+                                <p class="small mb-0">On orders over P2,000</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-feature">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Same Day Shipping</strong>
+                                <p class="small mb-0">Orders placed before 2PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-feature">
+                            <i class="fas fa-headset"></i>
+                            <div>
+                                <strong>24/7 Support</strong>
+                                <p class="small mb-0">Via email and WhatsApp</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-feature">
+                            <i class="fas fa-paw"></i>
+                            <div>
+                                <strong>Vet-Approved</strong>
+                                <p class="small mb-0">All products quality checked</p>
+                            </div>
+                        </div>
+                        
+                        <div class="store-hours">
+                            <h4 class="text-white mb-3">Store Hours</h4>
+                            <div class="hour-row">
+                                <span>Monday - Friday</span>
+                                <span>9:00 AM - 7:00 PM</span>
+                            </div>
+                            <div class="hour-row">
+                                <span>Saturday</span>
+                                <span>10:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="hour-row">
+                                <span>Sunday</span>
+                                <span>Closed</span>
+                            </div>
+                            <div class="hour-row mt-2">
+                                <span>🐾 Walk-ins welcome!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-wrapper">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115603.25934157322!2d25.84714375!3d-24.65822215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ebb5b3c2f5a5e0d%3A0x3a5b7c8d9e0f1a2b!2sGaborone!5e0!3m2!1sen!2sbw!4v1700000000000!5m2!1sen!2sbw" allowfullscreen loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Quick answers to common questions</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="faq-item-modern">
+                        <div class="faq-question-modern">
+                            <span>🐾 How long does delivery take?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer-modern">
+                            <p>Delivery typically takes 2-3 business days within Gaborone. For areas outside Gaborone, please allow 3-5 business days. You'll receive a tracking link once your order ships.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item-modern">
+                        <div class="faq-question-modern">
+                            <span>🐾 Can I return or exchange products?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer-modern">
+                            <p>Yes! We offer a 14-day return policy for unopened products. If your pet doesn't like the food, we'll help you find an alternative. Contact our support team for assistance.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item-modern">
+                        <div class="faq-question-modern">
+                            <span>🐾 Do you offer bulk discounts?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer-modern">
+                            <p>Absolutely! For bulk orders of 5+ bags, contact our wholesale team at wholesale@happybeasts.co.bw for special pricing. We also offer subscribe & save options for regular customers.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item-modern">
+                        <div class="faq-question-modern">
+                            <span>🐾 Are your products vet-approved?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer-modern">
+                            <p>Yes! All our products are sourced from trusted manufacturers with veterinary nutritionists on their teams. Many of our brands are recommended by local veterinarians.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h3>Happy Beasts 🐾</h3>
+                    <p class="small">Premium pet food for happy dogs and cats.</p>
+                    <p class="small">Healthy ingredients, balanced nutrition, and flavors your pets will love.</p>
+                </div>
+                <div class="col-md-2">
+                    <h4>Quick Links</h4>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="products.html">Products</a></p>
+                    <p><a href="brands.html">Brands</a></p>
+                    <p><a href="about.html">About Us</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+                </div>
+                <div class="col-md-3">
+                    <h4>Shop by Pet</h4>
+                    <p><a href="products.html?cat=dog">Dog Food</a></p>
+                    <p><a href="products.html?cat=cat">Cat Food</a></p>
+                    <p><a href="products.html">Best Sellers</a></p>
+                    <p><a href="products.html">New Arrivals</a></p>
+                </div>
+                <div class="col-md-3">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="mt-3">
+                        <p><i class="fas fa-map-marker-alt"></i> Gaborone, Botswana</p>
+                        <p><i class="fas fa-envelope"></i> hello@happybeasts.co.bw</p>
+                        <p><i class="fas fa-phone"></i> +267 71 234 567</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="mb-0 small">&copy; 2026 Happy Beasts. All rights reserved. | Healthy food for happy pets 🐾</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Cart Button -->
+    <a href="shop.html" class="float-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark" id="cartCount" style="font-size: 0.6rem;">0</span>
+    </a>
+
+    <div class="floating-paw" id="floatingPaw">
+        <i class="fas fa-paw"></i>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+        
+        // Active page highlighting
+        const currentPage = window.location.pathname.split('/').pop() || 'contact.html';
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === currentPage) link.classList.add('active');
+        });
+        
+        // Cart count
+        let cartCount = parseInt(localStorage.getItem('cartCount') || '0');
+        document.getElementById('cartCount').textContent = cartCount;
+        
+        // Floating paw animation on scroll
+        const floatingPaw = document.getElementById('floatingPaw');
+        let scrollTimer;
+        window.addEventListener('scroll', function() {
+            floatingPaw.style.opacity = '0.6';
+            floatingPaw.style.transform = 'translateY(-10px)';
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                floatingPaw.style.opacity = '0';
+                floatingPaw.style.transform = 'translateY(0)';
+            }, 1000);
+        });
+        
+        // Notification function
+        function showNotification(message, type) {
+            const existing = document.querySelector('.notification-toast');
+            if (existing) existing.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = `notification-toast ${type}`;
+            toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i> ${message}`;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.remove(), 4000);
+        }
+        
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value.trim();
+            
+            if (!name || !email || !subject || !message) {
+                showNotification('Please fill in all required fields.', 'error');
+                return;
+            }
+            
+            const emailRegex = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            showNotification('🐾 Thank you for reaching out! We\'ll respond within 24 hours.', 'success');
+            this.reset();
+        });
+        
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question-modern').forEach(question => {
+            question.addEventListener('click', () => {
+                const parent = question.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Shop premium dog and cat food at Happy Beasts. Royal Canin, Hill's, Purina, Blue Buffalo, and more. Free delivery on orders over ₱2,000.">
+    <meta name="keywords" content="dog food, cat food, pet food store, Royal Canin, Hill's, Purina, happy beasts">
+    <meta name="author" content="Happy Beasts">
+    <title>Products | Happy Beasts - Premium Pet Food</title>
+
+    <!--favicon-->
+    <link rel="icon" href="images/Happy beasts Logo.png" type="image/png">
+    
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=Fredoka+One&display=swap" rel="stylesheet">
+    
+    <!-- Internal CSS -->
+    <style>
+        /* ========================================
+           HAPPY BEASTS - PRODUCTS PAGE
+           Color Palette: Warm Orange | Soft Green | Cream | White
+           ======================================== */
+        
+        :root {
+            --primary-orange: #E87A2A;
+            --primary-dark: #C45E1A;
+            --secondary-green: #4A7C59;
+            --secondary-light: #6BA37A;
+            --accent-yellow: #F4C542;
+            --cream: #FFF9F0;
+            --cream-dark: #F5EDE0;
+            --white: #FFFFFF;
+            --gray-light: #F8F6F3;
+            --gray: #6B6B6B;
+            --text-dark: #2C2C2C;
+            --text-soft: #5A5A5A;
+            --shadow-sm: 0 4px 15px rgba(0,0,0,0.05);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.1);
+            --
+}
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--cream-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-orange);
+            border-radius: 10px;
+        }
+        
+        /* ========================================
+           BUTTON STYLES
+           ======================================== */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-dark));
+            color: var(--white);
+            border: none;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+display: inline-block;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .btn-primary:hover {
+box-shadow: var(--shadow-md);
+            color: var(--white);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+text-decoration: none;
+        }
+        
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--primary-orange);
+}
+        
+        .btn-green {
+            background: linear-gradient(135deg, var(--secondary-green), var(--secondary-light));
+            color: var(--white);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+cursor: pointer;
+        }
+        
+        .btn-green:hover {
+box-shadow: var(--shadow-sm);
+        }
+        
+        /* ========================================
+           NAVIGATION BAR
+           ======================================== */
+        .navbar {
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.75rem 0;
+        }
+        
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(255,255,255,0.98);
+        }
+        
+        .navbar-brand {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--primary-orange) !important;
+            letter-spacing: -0.5px;
+        }
+        
+        .navbar-brand span {
+            color: var(--secondary-green);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-soft) !important;
+position: relative;
+            margin: 0 12px;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--secondary-green));
+}
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-orange) !important;
+        }
+        
+        .btn-nav-shop {
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-dark));
+            color: var(--white) !important;
+            padding: 8px 24px !important;
+            border-radius: 50px;
+            margin-left: 8px;
+        }
+        
+        .btn-nav-shop:hover {
+}
+        
+        /* ========================================
+           PAGE HERO
+           ======================================== */
+        .page-hero {
+            background: linear-gradient(135deg, rgba(232,122,42,0.9) 0%, rgba(74,124,89,0.85) 100%),
+                        url('https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=1600');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .page-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Fredoka One', cursive;
+        }
+        
+        .page-hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .breadcrumb {
+            background: transparent;
+            justify-content: center;
+        }
+        
+        .breadcrumb-item a {
+            color: var(--accent-yellow);
+            text-decoration: none;
+        }
+        
+        .breadcrumb-item.active {
+            color: var(--white);
+        }
+        
+        /* ========================================
+           FILTER SECTION
+           ======================================== */
+        .filter-section {
+            padding: 40px 0;
+            background: var(--white);
+            position: sticky;
+            top: 76px;
+            z-index: 99;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .filter-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .category-filters {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-chip {
+            background: var(--cream);
+            border: none;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: var(--text-soft);
+cursor: pointer;
+        }
+        
+        .filter-chip:hover,
+        .filter-chip.active {
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-dark));
+            color: white;
+}
+        
+        .sort-select {
+            padding: 8px 20px;
+            border: 1px solid var(--cream-dark);
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            background: var(--white);
+            cursor: pointer;
+        }
+        
+        .result-count {
+            color: var(--text-soft);
+            font-size: 0.9rem;
+        }
+        
+        /* ========================================
+           PRODUCTS GRID
+           ======================================== */
+        .products-section {
+            padding: 60px 0;
+        }
+        
+        .product-card {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+box-shadow: var(--shadow-sm);
+            height: 100%;
+            position: relative;
+        }
+        
+        .product-card:hover {
+box-shadow: var(--shadow-lg);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent-yellow);
+            color: var(--text-dark);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            z-index: 2;
+        }
+        
+        .product-badge.bestseller {
+            background: var(--primary-orange);
+            color: white;
+        }
+        
+        .product-badge.new {
+            background: var(--secondary-green);
+            color: white;
+        }
+        
+        .product-badge.sale {
+            background: #E74C3C;
+            color: white;
+        }
+        
+        .product-img {
+            height: 220px;
+            width: 100%;
+            object-fit: contain;
+            padding: 20px;
+            background: linear-gradient(135deg, #FFF9F0, #FFF5E8);
+}
+        
+        .product-card:hover .product-img {
+}
+        
+        .product-info {
+            padding: 1.2rem 1.5rem 1.5rem;
+            text-align: center;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .product-brand {
+            font-size: 0.7rem;
+            color: var(--secondary-green);
+            font-weight: 700;
+            text-
+letter-spacing: 1px;
+        }
+        
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 8px 0;
+            color: var(--text-dark);
+        }
+        
+        .product-desc {
+            font-size: 0.75rem;
+            color: var(--text-soft);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .product-meta {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 12px;
+            font-size: 0.7rem;
+        }
+        
+        .product-meta span {
+            background: var(--cream);
+            padding: 3px 10px;
+            border-radius: 50px;
+        }
+        
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-orange);
+            margin-bottom: 12px;
+        }
+        
+        .product-price .original {
+            font-size: 0.85rem;
+            text-decoration: line-through;
+            color: var(--gray);
+            font-weight: normal;
+            margin-right: 8px;
+        }
+        
+        .product-rating {
+            margin-bottom: 12px;
+            color: var(--accent-yellow);
+            font-size: 0.8rem;
+        }
+        
+        .product-rating span {
+            color: var(--text-soft);
+            margin-left: 5px;
+        }
+        
+        .cart-btn {
+            background: linear-gradient(135deg, var(--secondary-green), var(--secondary-light));
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+cursor: pointer;
+            width: 100%;
+        }
+        
+        .cart-btn:hover {
+background: var(--secondary-light);
+        }
+        
+        /* ========================================
+           PAGINATION
+           ======================================== */
+        .pagination-section {
+            padding: 40px 0 60px;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .page-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            border: 1px solid var(--cream-dark);
+            border-radius: 50%;
+            color: var(--text-dark);
+            text-decoration: none;
+}
+        
+        .page-link:hover,
+        .page-link.active {
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-dark));
+            color: white;
+            border-color: transparent;
+        }
+        
+        /* ========================================
+           EMPTY STATE
+           ======================================== */
+        .empty-state {
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            background: linear-gradient(135deg, #1E2A1E, #2A3A2A);
+            color: #C4D4B4;
+            padding: 60px 0 20px;
+        }
+        
+        .footer h3, .footer h4 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+            color: var(--primary-orange);
+        }
+        
+        .footer a {
+            color: #C4D4B4;
+            text-decoration: none;
+}
+        
+        .footer a:hover {
+            color: var(--accent-yellow);
+            padding-left: 5px;
+        }
+        
+        .footer i {
+            margin-right: 10px;
+            color: var(--accent-yellow);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+}
+        
+        .social-icons a:hover {
+            background: var(--primary-orange);
+padding-left: 0;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        
+        /* ========================================
+           FLOATING CART
+           ======================================== */
+        .float-cart {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-dark));
+            color: var(--white);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: var(--shadow-lg);
+z-index: 999;
+            text-decoration: none;
+}
+        
+        .float-cart:hover {
+            background: var(--secondary-green);
+color: var(--white);
+        }
+        
+        
+        
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 992px) {
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+            .filter-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-hero {
+                padding: 50px 0;
+            }
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+            .filter-section {
+                top: 70px;
+            }
+            .category-filters {
+                justify-content: center;
+            }
+            .filter-chip {
+                padding: 5px 16px;
+                font-size: 0.8rem;
+            }
+            .footer .row > div {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            .social-icons {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 16px;
+            }
+            .product-title {
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* Toast Notification */
+        .toast-notification {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: var(--secondary-green);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            z-index: 1000;
+box-shadow: var(--shadow-md);
+        }
+        
+        
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/Happy beasts Logo.png" alt="Happy Beasts" class="logo-img" style="height: 65px; width: auto;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="brands.html">Brands</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="btn-nav-shop" href="shop.html">Shop Now</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Our Products</h1>
+            <p>Premium nutrition for your beloved pets</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Products</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-row">
+                <div class="category-filters">
+                    <button class="filter-chip active" data-filter="all">All Products</button>
+                    <button class="filter-chip" data-filter="dog">🐶 Dog Food</button>
+                    <button class="filter-chip" data-filter="cat">🐱 Cat Food</button>
+                </div>
+                <div class="result-count" id="resultCount">Showing 16 products</div>
+                <select class="sort-select" id="sortSelect">
+                    <option value="default">Sort by: Featured</option>
+                    <option value="price-asc">Sort by: Price (Low to High)</option>
+                    <option value="price-desc">Sort by: Price (High to Low)</option>
+                    <option value="name-asc">Sort by: Name (A-Z)</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="row g-4" id="productsGrid">
+                <!-- Products will be loaded here via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Pagination -->
+    <section class="pagination-section">
+        <div class="container">
+            <div class="pagination" id="pagination">
+                <a href="#" class="page-link" data-page="1">1</a>
+                <a href="#" class="page-link" data-page="2">2</a>
+                <a href="#" class="page-link" data-page="3">3</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h3>Happy Beasts 🐾</h3>
+                    <p class="small">Premium pet food for happy dogs and cats.</p>
+                    <p class="small">Healthy ingredients, balanced nutrition, and flavors your pets will love.</p>
+                </div>
+                <div class="col-md-2">
+                    <h4>Quick Links</h4>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="products.html">Products</a></p>
+                    <p><a href="brands.html">Brands</a></p>
+                    <p><a href="about.html">About Us</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+                </div>
+                <div class="col-md-3">
+                    <h4>Shop by Pet</h4>
+                    <p><a href="#" data-filter="dog">Dog Food</a></p>
+                    <p><a href="#" data-filter="cat">Cat Food</a></p>
+                    <p><a href="#">Best Sellers</a></p>
+                    <p><a href="#">New Arrivals</a></p>
+                </div>
+                <div class="col-md-3">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="mt-3">
+                        <p><i class="fas fa-map-marker-alt"></i> Gaborone, Botswana</p>
+                        <p><i class="fas fa-envelope"></i> hello@happybeasts.co.bw</p>
+                        <p><i class="fas fa-phone"></i> +267 71 234 567</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="mb-0 small">&copy; 2026 Happy Beasts. All rights reserved. | Healthy food for happy pets 🐾</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Cart Button -->
+    <a href="cart.html" class="float-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark" id="cartCount" style="font-size: 0.6rem;">0</span>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+        
+        // Active page highlighting
+        const currentPage = window.location.pathname.split('/').pop() || 'products.html';
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === currentPage) link.classList.add('active');
+        });
+        
+        // Product Database
+        const products = [
+            // Dog Food Products
+            { id: 1, name: "Adult Dog Food", brand: "ROYAL CANIN", category: "dog", price: 1250, originalPrice: 1450, weight: "3kg", rating: 4.8, badge: "bestseller", desc: "Complete nutrition for adult dogs, rich in protein and essential vitamins.", image: "images/Adult Dog Food.avif", type: "Dry Food", lifeStage: "Adult" },
+            { id: 2, name: "Wilderness High Protein", brand: "BLUE BUFFALO", category: "dog", price: 1850, originalPrice: 2200, weight: "4.5kg", rating: 4.9, badge: "bestseller", desc: "Grain-free, high-protein formula for active dogs.", image: "images/1.avif", type: "Dry Food", lifeStage: "Adult" },
+            { id: 3, name: "Science Diet", brand: "HILL'S", category: "dog", price: 1580, originalPrice: 1850, weight: "3.5kg", rating: 4.7, badge: "", desc: "Veterinarian-recommended digestive health formula.", image: "images/dog food.avif", type: "Dry Food", lifeStage: "Adult" },
+            { id: 4, name: "Backcountry Raw", brand: "MERRICK", category: "dog", price: 2200, originalPrice: 2600, weight: "4kg", rating: 4.9, badge: "new", desc: "Freeze-dried raw coated kibble for optimal nutrition.", image: "images/dog food1.avif", type: "Raw Blend", lifeStage: "All Stages" },
+            { id: 5, name: "Puppy Formula", brand: "ROYAL CANIN", category: "dog", price: 1350, originalPrice: 1550, weight: "3kg", rating: 4.8, badge: "", desc: "Specially formulated for growing puppies.", image: "images/8.avif", type: "Dry Food", lifeStage: "Puppy" },
+            { id: 6, name: "Grain-Free Salmon", brand: "TASTE OF THE WILD", category: "dog", price: 1950, originalPrice: 2300, weight: "4.5kg", rating: 4.8, badge: "", desc: "Salmon-based grain-free recipe for sensitive stomachs.", image: "images/9.avif", type: "Grain-Free", lifeStage: "Adult" },
+            { id: 7, name: "Senior Dog Food", brand: "HILL'S", category: "dog", price: 1450, originalPrice: 1650, weight: "3.5kg", rating: 4.7, badge: "", desc: "Formulated for senior dogs with joint support.", image: "images/10.avif", type: "Dry Food", lifeStage: "Senior" },
+            { id: 8, name: "Wet Dog Food", brand: "PURINA", category: "dog", price: 120, originalPrice: 150, weight: "400g", rating: 4.6, badge: "sale", desc: "Premium wet food with real chicken and vegetables.", image: "images/dog food2.avif", type: "Wet Food", lifeStage: "Adult" },
+            
+            // Cat Food Products
+            { id: 9, name: "Adult Cat Food", brand: "ROYAL CANIN", category: "cat", price: 1150, originalPrice: 1350, weight: "2kg", rating: 4.8, badge: "bestseller", desc: "Balanced nutrition for indoor adult cats.", image: "images/cf.avif", type: "Dry Food", lifeStage: "Adult" },
+            { id: 10, name: "Grain-Free Pate", brand: "WELLNESS", category: "cat", price: 120, originalPrice: 150, weight: "85g", rating: 4.9, badge: "bestseller", desc: "Premium wet food with real chicken or salmon.", image: "images/cf1.avif", type: "Wet Food", lifeStage: "All Stages" },
+            { id: 11, name: "Pro Plan LiveClear", brand: "PURINA", category: "cat", price: 1450, originalPrice: 1700, weight: "3kg", rating: 4.8, badge: "new", desc: "Reduces allergens in cat hair and dander.", image: "images/cf2.avif", type: "Dry Food", lifeStage: "Adult" },
+            { id: 12, name: "Kitten Formula", brand: "ROYAL CANIN", category: "cat", price: 950, originalPrice: 1150, weight: "1.5kg", rating: 4.8, badge: "", desc: "Specially formulated for growing kittens.", image: "images/15.avif", type: "Dry Food", lifeStage: "Kitten" },
+            { id: 13, name: "Indoor Cat Food", brand: "HILL'S", category: "cat", price: 1250, originalPrice: 1450, weight: "2kg", rating: 4.7, badge: "", desc: "For indoor cats with weight control.", image: "images/cf3.avif", type: "Dry Food", lifeStage: "Adult" },
+            { id: 14, name: "Seafood Sensation", brand: "BLUE BUFFALO", category: "cat", price: 1350, originalPrice: 1600, weight: "2.5kg", rating: 4.8, badge: "", desc: "Seafood-based recipe with real fish.", image: "images/cf4.avif", type: "Grain-Free", lifeStage: "Adult" },
+            { id: 15, name: "Hairball Control", brand: "PURINA", category: "cat", price: 1100, originalPrice: 1300, weight: "2kg", rating: 4.6, badge: "", desc: "Helps reduce hairballs with natural fiber blend.", image: "images/cf5.webp", type: "Dry Food", lifeStage: "Adult" },
+            { id: 16, name: "Senior Cat Food", brand: "ROYAL CANIN", category: "cat", price: 1200, originalPrice: 1400, weight: "2kg", rating: 4.7, badge: "", desc: "Formulated for senior cats with joint support.", image: "images/cf6.webp", type: "Dry Food", lifeStage: "Senior" }
+        ];
+        
+        let currentFilter = "all";
+        let currentSort = "default";
+        let currentPageNum = 1;
+        const itemsPerPage = 12;
+        
+        // Render products
+        function renderProducts() {
+            let filtered = [...products];
+            
+            // Apply filter
+            if (currentFilter !== "all") {
+                filtered = filtered.filter(p => p.category === currentFilter);
+            }
+            
+            // Apply sort
+            if (currentSort === "price-asc") {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (currentSort === "price-desc") {
+                filtered.sort((a, b) => b.price - a.price);
+            } else if (currentSort === "name-asc") {
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+            }
+            
+            // Update result count
+            document.getElementById("resultCount").textContent = `Showing ${filtered.length} products`;
+            
+            // Pagination
+            const totalPages = Math.ceil(filtered.length / itemsPerPage);
+            const start = (currentPageNum - 1) * itemsPerPage;
+            const paginated = filtered.slice(start, start + itemsPerPage);
+            
+            // Render products grid
+            const grid = document.getElementById("productsGrid");
+            if (paginated.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-12">
+                        <div class="empty-state">
+                            <i class="fas fa-paw"></i>
+                            <h3>No products found</h3>
+                            <p>Try adjusting your filters</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                grid.innerHTML = paginated.map(product => `
+                    <div class="col-md-6 col-lg-3 product-item" data-category="${product.category}">
+                        <div class="product-card">
+                            ${product.badge ? `<span class="product-badge ${product.badge}">${product.badge === 'bestseller' ? 'Best Seller' : product.badge === 'new' ? 'New Arrival' : 'Sale'}</span>` : ''}
+                            <img src="${product.image}" alt="${product.name}" class="product-img" loading="lazy">
+                            <div class="product-info">
+                                <div class="product-brand">${product.brand}</div>
+                                <h3 class="product-title">${product.name}</h3>
+                                <p class="product-desc">${product.desc}</p>
+                                <div class="product-meta">
+                                    <span><i class="fas fa-weight-hanging"></i> ${product.weight}</span>
+                                    <span><i class="fas fa-utensils"></i> ${product.type}</span>
+                                </div>
+                                <div class="product-rating">
+                                    ${renderStars(product.rating)} <span>(${product.rating})</span>
+                                </div>
+                                <div class="product-price">
+                                    ${product.originalPrice > product.price ? `<span class="original">P${product.originalPrice}</span>` : ''}
+                                    P${product.price}
+                                </div>
+                                <button class="cart-btn" onclick="addToCart(${product.id}, '${product.name.replace(/'/g, "\\'")}', ${product.price})">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            // Render pagination
+            renderPagination(totalPages);
+        }
+        
+        function renderStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalf = rating % 1 >= 0.5;
+            let stars = '';
+            for (let i = 0; i < fullStars; i++) stars += '<i class="fas fa-star"></i>';
+            if (hasHalf) stars += '<i class="fas fa-star-half-alt"></i>';
+            const emptyStars = 5 - Math.ceil(rating);
+            for (let i = 0; i < emptyStars; i++) stars += '<i class="far fa-star"></i>';
+            return stars;
+        }
+        
+        function renderPagination(totalPages) {
+            const paginationDiv = document.getElementById("pagination");
+            if (totalPages <= 1) {
+                paginationDiv.innerHTML = '';
+                return;
+            }
+            
+            let pages = '';
+            for (let i = 1; i <= totalPages; i++) {
+                pages += `<a href="#" class="page-link ${i === currentPageNum ? 'active' : ''}" data-page="${i}">${i}</a>`;
+            }
+            paginationDiv.innerHTML = pages;
+            
+            document.querySelectorAll('.page-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    currentPageNum = parseInt(this.getAttribute('data-page'));
+                    renderProducts();
+                    window.scrollTo(0, 400);
+                });
+            });
+        }
+        
+        // Cart functionality
+        let cartCount = parseInt(localStorage.getItem('cartCount') || '0');
+        document.getElementById('cartCount').textContent = cartCount;
+        
+        function addToCart(id, name, price) {
+            cartCount++;
+            document.getElementById('cartCount').textContent = cartCount;
+            localStorage.setItem('cartCount', cartCount);
+            
+            // Show toast notification
+            const toast = document.createElement('div');
+            toast.className = 'toast-notification';
+            toast.innerHTML = `<i class="fas fa-check-circle"></i> ${name} added to cart! 🐾`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2500);
+        }
+        
+        // Filter functionality
+        document.querySelectorAll('.filter-chip').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentFilter = this.getAttribute('data-filter');
+                currentPageNum = 1;
+                renderProducts();
+            });
+        });
+        
+        // Sort functionality
+        document.getElementById('sortSelect').addEventListener('change', function() {
+            currentSort = this.value;
+            currentPageNum = 1;
+            renderProducts();
+        });
+        
+        // Shop by pet links in footer
+        document.querySelectorAll('a[data-filter]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const filter = this.getAttribute('data-filter');
+                document.querySelector(`.filter-chip[data-filter="${filter}"]`).click();
+                window.scrollTo(0, 300);
+            });
+        });
+        
+        // Initial render
+        renderProducts();
+    </script>
+</body>
+</html>
